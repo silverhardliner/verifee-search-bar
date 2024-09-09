@@ -4,23 +4,12 @@ import "./SearchBar.css";
 
 export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
-  const [debouncedInput, setDebouncedInput] = useState(input);
 
   const minTitleLength = 2;
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedInput(input);  // Update debounced value after delay
-    }, 300); // 300ms delay for debounce
-
-    return () => {
-      clearTimeout(handler);  // Cleanup to avoid stale timeouts
-    };
+    fetchData(input);
   }, [input]);
-
-  useEffect(() => {
-    fetchData(debouncedInput);
-  }, [debouncedInput]);
 
   const fetchData = (value) => {
     if (value.length >= minTitleLength) {
@@ -29,9 +18,17 @@ export const SearchBar = ({ setResults }) => {
       fetch(url)
         .then((response) => response.json())
         .then((json) => {
-          const results = json.filter((article) => value && article && article.title);
+          const results = json.filter(
+            (article) => value && article && article.title
+          );
+
           console.log("Filled");
-          setResults(results);
+
+          if (results.length === 0) {
+            setResults([{title : "Nenašli jsme žádný článek."}]);
+          } else {
+            setResults(results);
+          }
         });
     } else {
       console.log("Empty");
@@ -40,7 +37,7 @@ export const SearchBar = ({ setResults }) => {
   };
 
   const handleChange = (value) => {
-    setInput(value);  // Update input immediately
+    setInput(value); // Update input immediately
   };
 
   return (
