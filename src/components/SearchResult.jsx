@@ -1,5 +1,5 @@
 import React from "react";
-import { ImFileEmpty } from "react-icons/im";
+import { ImageIcon } from "./ImageIcon";
 
 import "./SearchResult.css";
 
@@ -28,24 +28,19 @@ export const SearchResult = ({ result }) => {
     return czechDate;
   }
 
+  function handleClick() {
+    if (result.image_url) {
+      window.open(verifeeAnalysis, "_blank");
+    }
+  }
+
   const verifeeAnalysis = `https://verifee.ai/analysis.html?url=${result.url}`;
   const date =
     result.article_published && result.article_published.substr(0, 10);
   return (
-    <div
-      className="search-result"
-      onClick={
-        result.image_url
-          ? () => window.open(verifeeAnalysis, "_blank")
-          : () => {}
-      }
-    >
-      {result.image_url ? (
-        <img src={result.image_url} alt={result.title} />
-      ) : (
-        <ImFileEmpty id="empty-icon" />
-      )}
-      <div className="result-details">
+    <div className="search-result container-row" onClick={handleClick}>
+      <ImageIcon result={result}/>
+      <div className="result-details container-column">
         <div className="result-title">{result.title}</div>
         <div className="result-date">{date && convertDateToCzech(date)}</div>
       </div>

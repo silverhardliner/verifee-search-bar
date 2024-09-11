@@ -11,6 +11,14 @@ export const SearchBar = ({ setResults }) => {
     fetchData(input);
   }, [input]);
 
+  function handleResults(results) {
+    if (results.length === 0) {
+      setResults([{ title: "Nenašli jsme žádný článek." }]);
+    } else {
+      setResults(results);
+    }
+  }
+
   const fetchData = (value) => {
     if (value.length >= minTitleLength) {
       const encodedValue = encodeURIComponent(value);
@@ -22,16 +30,9 @@ export const SearchBar = ({ setResults }) => {
             (article) => value && article && article.title
           );
 
-          console.log("Filled");
-
-          if (results.length === 0) {
-            setResults([{title : "Nenašli jsme žádný článek."}]);
-          } else {
-            setResults(results);
-          }
+          handleResults(results);
         });
     } else {
-      console.log("Empty");
       setResults([]);
     }
   };
