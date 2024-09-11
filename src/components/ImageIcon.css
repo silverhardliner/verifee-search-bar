@@ -1,5 +1,22 @@
 #empty-icon {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+img {
+  max-width: 50px;
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+}
+
+@media (max-width: 480px) {
+  img {
+    display: none;
   }
-  
+
+  #empty-icon {
+    display: none;
+  }
+}

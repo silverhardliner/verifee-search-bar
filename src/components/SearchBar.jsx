@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 import "./SearchBar.css";
 
 export const SearchBar = ({ setResults }) => {
@@ -49,6 +50,7 @@ export const SearchBar = ({ setResults }) => {
         value={input}
         onChange={(e) => handleChange(e.target.value)}
       ></input>
+      <div className="circle"><FaXmark id="cross-icon" onClick={() => handleChange("")}/></div>
     </div>
   );
 };

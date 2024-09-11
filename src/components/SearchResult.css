@@ -23,18 +23,7 @@
   cursor: pointer;
 }
 
-.search-result img {
-  max-width: 50px;
-  max-height: 50px;
-  width: auto;
-  height: auto;
-  border-radius: 5px;
-}
-
-@media (max-width: 480px) { 
-  .search-result img  { 
-    display: none; 
-  }
+@media (max-width: 480px) {
   .container-column {
     width: 100%;
   }
@@ -44,7 +33,7 @@
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
 }
 
 .result-date {
