@@ -22,16 +22,26 @@ export const SearchBar = ({ setResults }) => {
 
   const fetchData = (value) => {
     if (value.length >= minTitleLength) {
+      let dataError = false;
       const encodedValue = encodeURIComponent(value);
       const url = `https://verifee-api.azure-api.net/verifee/search?query=${encodedValue}`;
+
       fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+          }
+          return response;
+        })
         .then((response) => response.json())
         .then((json) => {
           const results = json.filter(
             (article) => value && article && article.title
           );
-
           handleResults(results);
+        })
+        .catch(function () {
+          dataError = true;
         });
     } else {
       setResults([]);
@@ -50,7 +60,9 @@ export const SearchBar = ({ setResults }) => {
         value={input}
         onChange={(e) => handleChange(e.target.value)}
       ></input>
-      <div className="circle"><FaXmark id="cross-icon" onClick={() => handleChange("")}/></div>
+      <div className="circle">
+        <FaXmark id="cross-icon" onClick={() => handleChange("")} />
+      </div>
     </div>
   );
 };
