@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaSearch } from "react-icons/fa";
-import { FaXmark } from "react-icons/fa6";
+import { Cross, Search } from "akar-icons";
 import "./SearchBar.css";
 
 export const SearchBar = ({ setResults }) => {
@@ -54,14 +53,19 @@ export const SearchBar = ({ setResults }) => {
 
   return (
     <div className="input-wrapper">
-      <FaSearch id="search-icon" />
+      <Search id="search-icon" strokeWidth={2} size={20} />
       <input
         placeholder="Zadejte titulek nebo adresu webu pro analýzu"
         value={input}
         onChange={(e) => handleChange(e.target.value)}
       ></input>
       <div className="circle">
-        <FaXmark id="cross-icon" onClick={() => handleChange("")} />
+        <Cross
+          strokeWidth={2}
+          size={20}
+          id="cross-icon"
+          onClick={() => handleChange("")}
+        />
       </div>
     </div>
   );

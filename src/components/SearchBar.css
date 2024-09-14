@@ -1,26 +1,28 @@
 .input-wrapper {
   background-color: white;
+  opacity: 85%;
+  border-color: #CACCDA;
   width: 100%;
   border-radius: 10px;
-  height: 3rem;
+  height: 64px;
   padding: 0 15px;
-  box-shadow: 0 0 8px #ddd;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 
 input {
   background-color: transparent;
   border: none;
   height: 100%;
-  font-size: 1rem;
+  font-size: 16px;
   width: 100%;
   margin-left: 5px;
-  color: black;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: #4D557A;
 }
 
 input:focus {
@@ -28,7 +30,7 @@ input:focus {
 }
 
 #search-icon {
-  color: royalblue;
+  color: #3C59FF;
 }
 
 .circle {
@@ -39,8 +41,7 @@ input:focus {
 }
 
 #cross-icon {
-  color: royalblue;
-  font-size: 1.5rem;
+  color: #3C59FF;
 }
 
 #cross-icon:hover {
