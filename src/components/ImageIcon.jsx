@@ -5,14 +5,11 @@ import "./ImageIcon.css";
 
 export const ImageIcon = ({ result }) => {
   if (result.image_url) {
+    result.image_url = result.image_url.replace("http:", "https:");
     return (
-      <div className="img-cont"><img
-        src={result.image_url}
-        alt={result.title}
-        loading="lazy"
-        srcSet={`${result.image_url} 60w`}
-        sizes="60px"
-      /></div>
+      <div className="img-cont">
+        <img src={result.image_url} alt={result.title} loading="lazy" />
+      </div>
     );
   } else if (result.loading) {
     return <Download strokeWidth={2} size={20} />;
