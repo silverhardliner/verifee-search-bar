@@ -25,6 +25,10 @@ export const SearchBar = ({ setResults }) => {
     //fetchData(input);
   }, [input]);
 
+  function showLoadingResult() {
+    setResults([{ title: "Hledáme odpovídající články.", loading: true }]);
+  }
+
   function handleResults(results) {
     if (results.length === 0) {
       setResults([{ title: "Nenašli jsme žádný článek." }]);
@@ -35,7 +39,8 @@ export const SearchBar = ({ setResults }) => {
 
   const fetchData = (value, signal) => {
     if (value.length >= minTitleLength) {
-      let dataError = false;
+      showLoadingResult();
+
       const encodedValue = encodeURIComponent(value);
       const url = `https://verifee-api.azure-api.net/verifee/search?query=${encodedValue}`;
 

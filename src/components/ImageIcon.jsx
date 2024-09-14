@@ -1,5 +1,5 @@
 import React from "react";
-import { ImFileEmpty } from "react-icons/im";
+import { Download, Block } from "akar-icons";
 
 import "./ImageIcon.css";
 
@@ -14,7 +14,9 @@ export const ImageIcon = ({ result }) => {
         sizes="60px"
       /></div>
     );
+  } else if (result.loading) {
+    return <Download strokeWidth={2} size={20} />;
   } else {
-    return <ImFileEmpty id="empty-icon" />;
+    return <Block strokeWidth={2} size={20} />;
   }
 };
