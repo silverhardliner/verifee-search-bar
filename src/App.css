@@ -1,15 +1,13 @@
 .App {
-  background-color: #3954ee;
+  background:none transparent;
   height: 100vh;
   width: 100vw;
 }
 
 .search-bar-container {
-  padding-top: 10vh;
-  width: 50%;
+  width: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 200px;
 }

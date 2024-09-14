@@ -8,7 +8,21 @@ export const SearchBar = ({ setResults }) => {
   const minTitleLength = 2;
 
   useEffect(() => {
-    fetchData(input);
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const delayDebounceFn = setTimeout(() => {
+      // Send Axios request here
+      console.log(`Fetching for '${input}'`);
+      fetchData(input, signal);
+    }, 500);
+
+    return () => {
+      clearTimeout(delayDebounceFn);
+      controller.abort();
+    };
+    //console.log(`Fetching for '${input}'`);
+    //fetchData(input);
   }, [input]);
 
   function handleResults(results) {
@@ -19,13 +33,13 @@ export const SearchBar = ({ setResults }) => {
     }
   }
 
-  const fetchData = (value) => {
+  const fetchData = (value, signal) => {
     if (value.length >= minTitleLength) {
       let dataError = false;
       const encodedValue = encodeURIComponent(value);
       const url = `https://verifee-api.azure-api.net/verifee/search?query=${encodedValue}`;
 
-      fetch(url)
+      fetch(url, { signal })
         .then((response) => {
           if (!response.ok) {
             throw new Error("HTTP error " + response.status);
@@ -39,8 +53,12 @@ export const SearchBar = ({ setResults }) => {
           );
           handleResults(results);
         })
-        .catch(function () {
-          dataError = true;
+        .catch((error) => {
+          if (error.name === "AbortError") {
+            console.log("Fetch aborted for input: ", value);
+          } else {
+            console.error("Fetch error: ", error);
+          }
         });
     } else {
       setResults([]);

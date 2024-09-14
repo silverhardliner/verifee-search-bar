@@ -1,7 +1,7 @@
 .input-wrapper {
   background-color: white;
   opacity: 85%;
-  border-color: #CACCDA;
+  border-color: #caccda;
   width: 100%;
   border-radius: 8px;
   height: 64px;
@@ -10,6 +10,9 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(44, 71, 223, 25%),
+    inset 0px -1px 0px 0px rgba(0, 0, 0, 20%),
+    inset 0px 1px 0px 0px rgba(255, 255, 255, 30%);
 }
 
 input {
@@ -22,7 +25,7 @@ input {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #4D557A;
+  color: #4d557a;
 }
 
 input:focus {
@@ -30,18 +33,18 @@ input:focus {
 }
 
 #search-icon {
-  color: #3C59FF;
+  color: #3c59ff;
 }
 
 .circle {
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #cross-icon {
-  color: #3C59FF;
+  color: #3c59ff;
 }
 
 #cross-icon:hover {
@@ -49,5 +52,5 @@ input:focus {
 }
 
 .circle:hover {
-    background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
 }

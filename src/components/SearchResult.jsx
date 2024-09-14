@@ -41,8 +41,8 @@ export const SearchResult = ({ result }) => {
     <div className="search-result container-row" onClick={handleClick}>
       <ImageIcon result={result}/>
       <div className="result-details container-column">
-        <div className="result-title">{result.title}</div>
-        <div className="result-date">{date && convertDateToCzech(date)}</div>
+        <div className="result-title ellipsis-set">{result.title}</div>
+        <div className="result-date ellipsis-set">{date && convertDateToCzech(date)}</div>
       </div>
     </div>
   );
