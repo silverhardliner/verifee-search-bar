@@ -12,8 +12,6 @@ export const SearchBar = ({ setResults }) => {
     const signal = controller.signal;
 
     const delayDebounceFn = setTimeout(() => {
-      // Send Axios request here
-      console.log(`Fetching for '${input}'`);
       fetchData(input, signal);
     }, 500);
 
@@ -21,8 +19,6 @@ export const SearchBar = ({ setResults }) => {
       clearTimeout(delayDebounceFn);
       controller.abort();
     };
-    //console.log(`Fetching for '${input}'`);
-    //fetchData(input);
   }, [input]);
 
   function showLoadingResult() {
@@ -60,9 +56,11 @@ export const SearchBar = ({ setResults }) => {
         })
         .catch((error) => {
           if (error.name === "AbortError") {
-            console.log("Fetch aborted for input: ", value);
+            // Fetch aborted for input; no need to log this in production
+            //console.log("Fetch aborted for input: ", value);
           } else {
-            console.error("Fetch error: ", error);
+            // Fetch error occurred; handling it silently
+            //console.error("Fetch error: ", error);
           }
         });
     } else {
