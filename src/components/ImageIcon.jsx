@@ -1,5 +1,5 @@
 import React from "react";
-import { Download, Block } from "akar-icons";
+import { ArrowCycle, Block } from "akar-icons";
 
 import "./ImageIcon.css";
 
@@ -18,7 +18,7 @@ export const ImageIcon = ({ result }) => {
       </div>
     );
   } else if (result.loading) {
-    return <Download strokeWidth={2} size={20} />;
+    return <ArrowCycle strokeWidth={2} size={20} />;
   } else {
     return <Block strokeWidth={2} size={20} />;
   }
